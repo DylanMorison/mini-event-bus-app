@@ -29,6 +29,7 @@ app.post('/posts/:id/comments', async (req, res) => {
       data: {
         id: commentId,
         postId: req.params.id,
+        content,
       },
     })
     res.status(201).send(comments)
