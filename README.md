@@ -93,6 +93,53 @@ Anytime we think of networking in any way, we are always thinking of services. T
 - **Load Balancer**: Makes a pod accessible from _outside the cluster_. This is the right way to expose a pod to the outside world.
 - **External Name**: Redirects an in-cluster request to a CNAME url... don't worry about this one...
 
-```yaml
+### Services yaml example
 
+```yaml
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: posts-srv
+
+spec:
+  type: NodePort
+  selector:
+    app: posts
+  ports:
+    - name: posts
+      protocol: TCP
+      # address of the `node port service`
+      port: 4000
+      # `node port service` redirects incoming requests to `targetPort`
+      targetPort: 4000
+```
+
+```bash
+$ k get services
+NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP          128m
+posts-srv    NodePort    10.104.77.121   <none>        4000:30768/TCP   2m10s
+```
+
+In the above snippet, 30768/TCP is a randomly assigned number known as the NodePort, usually ranging from 30k to 32k.
+
+```bash
+$ k describe service posts-srv
+Name:                     posts-srv
+Namespace:                default
+Labels:                   <none>
+Annotations:              <none>
+Selector:                 app=posts
+Type:                     NodePort
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+LoadBalancer Ingress:     localhost
+Port:                     posts  4000/TCP
+TargetPort:               4000/TCP
+# Nodeport is how you would access this service from outside in a browser, for example
+NodePort:                 posts  30768/TCP
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
 ```
