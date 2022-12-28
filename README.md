@@ -119,7 +119,7 @@ spec:
 $ k get services
 NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
 kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP          128m
-posts-srv    NodePort    10.104.77.121   <none>        4000:30768/TCP   2m10s
+posts-srv    NodePort       <none>        4000:30768/TCP   2m10s
 ```
 
 In the above snippet, 30768/TCP is a randomly assigned number known as the NodePort, usually ranging from 30k to 32k.
