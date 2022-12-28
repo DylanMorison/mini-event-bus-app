@@ -10,7 +10,7 @@
 - **Deployment**: Monitors a set of pods, make sure they are running aand restarts them if they crash/
 - **Service**: Provides an easy to remember URL to access a running container.
 
-### CLI
+### k8s CLI
 
 ```bash
 # Print out information about all the running pods
@@ -30,6 +30,9 @@ kubectl apply -f [config_file_name]
 
 # Print out some information about the running pod
 kubectl describe pod [pod_name]
+
+k rollout restart deployment posts-depl
+# deployment.apps/posts-depl restarted
 ```
 
 ### Pod Yaml
@@ -62,9 +65,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: posts-depl
-spec: 
+spec:
   replicas: 1
-  # Take a look at all the different pods that have been created.  
+  # Take a look at all the different pods that have been created.
   # Find all pods with the label: `app:posts`
   # The label can be anything, such as `LOLOL:LMAOLMAO`
   selector:
@@ -79,4 +82,17 @@ spec:
       containers:
         - name: posts
           image: dozer1234/posts:0.0.1
+```
+
+### Types of k8s Services
+
+Anytime we think of networking in any way, we are always thinking of services. There are 4 different types of services we will use on a daily basis with k8s.
+
+- **Cluster IP**: Sets up an easy-to-remember URL to access a pod. Only exposes pods _in the cluster_
+- **Node Port**: Makes a pod accessible from outside the cluster. Usually only used for dev purposes.
+- **Load Balancer**: Makes a pod accessible from _outside the cluster_. This is the right way to expose a pod to the outside world.
+- **External Name**: Redirects an in-cluster request to a CNAME url... don't worry about this one...
+
+```yaml
+
 ```
