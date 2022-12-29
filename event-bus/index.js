@@ -13,10 +13,10 @@ app.post('/events', async (req, res) => {
   events.push(event)
 
   try {
-    const p1 = axios.post('http://localhost:4000/events', event) // posts service
-    const p2 = axios.post('http://localhost:4001/events', event) // comments service
-    const p3 = axios.post('http://localhost:4002/events', event) // query service
-    const p4 = axios.post('http://localhost:4003/events', event) // moderation service
+    const p1 = axios.post('http://post-clusterip-srv:4000/events', event) // posts service
+    const p2 = axios.post('http://comments-srv:4001/events', event) // comments service
+    const p3 = axios.post('http://query-srv:4002/events', event) // query service
+    const p4 = axios.post('http://moderation-srv:4003/events', event) // moderation service
     await Promise.all([p1, p2, p3, p4])
     res.send({ status: 'OK' })
   } catch (err) {
