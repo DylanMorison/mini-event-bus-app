@@ -33,6 +33,13 @@ kubectl describe pod [pod_name]
 
 k rollout restart deployment posts-depl
 # deployment.apps/posts-depl restarted
+
+$ k rollout restart deployments
+# deployment.apps/comments-depl restarted
+# deployment.apps/event-bus-depl restarted
+# deployment.apps/moderation-depl restarted
+# deployment.apps/posts-depl restarted
+# deployment.apps/query-depl restarted
 ```
 
 ### Pod Yaml

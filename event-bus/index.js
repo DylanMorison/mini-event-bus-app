@@ -7,22 +7,25 @@ app.use(bodyParser.json())
 
 const events = []
 
-app.post('/events', async (req, res) => {
-  const event = req.body
+app.post("/events", (req, res) => {
+  const event = req.body;
 
-  events.push(event)
+  events.push(event);
 
-  try {
-    const p1 = axios.post('http://post-clusterip-srv:4000/events', event) // posts service
-    const p2 = axios.post('http://comments-srv:4001/events', event) // comments service
-    const p3 = axios.post('http://query-srv:4002/events', event) // query service
-    const p4 = axios.post('http://moderation-srv:4003/events', event) // moderation service
-    await Promise.all([p1, p2, p3, p4])
-    res.send({ status: 'OK' })
-  } catch (err) {
-    console.error(err)
-  }
-})
+  axios.post("http://posts-clusterip-srv:4000/events", event).catch((err) => {
+    console.log(err.message);
+  });
+  axios.post("http://comments-srv:4001/events", event).catch((err) => {
+    console.log(err.message);
+  });
+  axios.post("http://query-srv:4002/events", event).catch((err) => {
+    console.log(err.message);
+  });
+  axios.post("http://moderation-srv:4003/events", event).catch((err) => {
+    console.log(err.message);
+  });
+  res.send({ status: "OK" });
+});
 
 app.get('/events', (req, res) => res.send(events))
 
