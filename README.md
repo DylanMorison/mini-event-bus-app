@@ -150,3 +150,12 @@ Session Affinity:         None
 External Traffic Policy:  Cluster
 Events:                   <none>
 ```
+
+### How to get our react app to communicate to cluster from Browser
+
+- **Load Balancer Service**: Tells k8s to reach out to its provider and provsion a load balancer. Gets traffic in to a _single pod_.
+  - The goal of a load balancer is to tell our cluster to reach out to its provdier (AWS, GC, Azure) then provision a load balancer with the goal of getting some traffic into a pod within our cluster.
+  - However what if we want to distribute traffic into a _set_ of pods within our cluster? This is where **ingress** comes into play.
+- **Ingress** or **Ingress Controller**: A pod with a set of routing rules to distribute traffic to other services.
+
+<img src="../mini-event-bus-app/diagrams/simple_load_balancer_ingress_diagram.png">
