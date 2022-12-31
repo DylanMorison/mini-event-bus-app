@@ -161,3 +161,7 @@ Events:                   <none>
 <img src="../mini-event-bus-app/diagrams/simple_load_balancer_ingress_diagram.png">
 
 ### Skaffold
+```bash
+# start up skaffold 
+skaffold dev
+```
