@@ -31,11 +31,11 @@ kind: Service
 metadata:
   name: posts-clusterip-srv
 spec:
-  type: ClusterIP
   selector:
-    app: post
+    app: posts
   ports:
-    - name: post
+    - name: posts
       protocol: TCP
       port: 4000
       targetPort: 4000
+

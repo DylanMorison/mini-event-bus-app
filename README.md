@@ -159,3 +159,5 @@ Events:                   <none>
 - **Ingress** or **Ingress Controller**: A pod with a set of routing rules to distribute traffic to other services.
 
 <img src="../mini-event-bus-app/diagrams/simple_load_balancer_ingress_diagram.png">
+
+### Skaffold

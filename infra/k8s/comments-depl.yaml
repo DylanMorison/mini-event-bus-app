@@ -32,7 +32,6 @@ kind: Service
 metadata:
   name: comments-srv
 spec:
-  type: ClusterIP
   selector:
     app: comments
   ports:
